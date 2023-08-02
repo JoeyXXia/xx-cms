@@ -1,5 +1,5 @@
 <template>
-  <div>phone</div>
+  <div class="panel-phone">phone</div>
 </template>
 
 <script setup lang="ts"></script>

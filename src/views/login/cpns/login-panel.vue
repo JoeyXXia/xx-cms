@@ -13,6 +13,7 @@
           </template>
           <panel-account />
         </el-tab-pane>
+
         <el-tab-pane label="手机" name="name">
           <template #label>
             <div class="label">
@@ -24,11 +25,14 @@
         </el-tab-pane>
       </el-tabs>
     </div>
+
     <div class="controls">
-      <el-checkbox label="记住密码" size="large" />
+      <el-checkbox v-model="isRemPwd" label="记住密码" size="large" />
       <el-link type="primary">忘记密码</el-link>
     </div>
-    <el-button type="primary">Primary</el-button>
+    <el-button class="login-btn" type="primary" size="large" @click="handleLoginBtnClick"
+      >立即登录</el-button
+    >
   </div>
 </template>
 
@@ -38,6 +42,15 @@ import PanelAccount from './panel-account.vue'
 import PanelPhone from './panel-phone.vue'
 
 const activeName = ref('account')
+const isRemPwd = ref()
+
+function handleLoginBtnClick() {
+  if (activeName.value === 'account') {
+    console.log('account')
+  } else {
+    console.log('cellphone')
+  }
+}
 </script>
 
 <style lang="less" scoped>
@@ -48,6 +61,23 @@ const activeName = ref('account')
   .title {
     text-align: center;
     margin-bottom: 15px;
+  }
+  .label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .text {
+      margin-left: 5px;
+    }
+  }
+  .controls {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .login-btn {
+    margin-top: 10px;
+    width: 100%;
   }
 }
 </style>

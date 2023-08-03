@@ -19,8 +19,10 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
-import type { FormRules } from 'element-plus'
+import { reactive, ref } from 'vue'
+import type { FormRules, ElForm } from 'element-plus'
+import { ElMessage } from 'element-plus'
+
 const account = reactive({
   name: '',
   password: ''
@@ -39,8 +41,15 @@ const accountRules: FormRules = {
 }
 
 // login logic
+const formRef = ref<InstanceType<typeof ElForm>>()
 function loginAction() {
-  console.log('account', account.name, account.password)
+  formRef.value?.validate((valid) => {
+    if (valid) {
+      console.log('success')
+    } else {
+      ElMessage.error('oooooooooo something wrong')
+    }
+  })
 }
 
 defineExpose({

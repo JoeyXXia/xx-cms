@@ -42,7 +42,7 @@ import PanelAccount from './panel-account.vue'
 import PanelPhone from './panel-phone.vue'
 
 const activeName = ref('account')
-const isRemPwd = ref()
+const isRemPwd = ref(false)
 
 function handleLoginBtnClick() {
   if (activeName.value === 'account') {

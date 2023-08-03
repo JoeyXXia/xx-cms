@@ -33,7 +33,7 @@ const accountRules: FormRules = {
   ],
   password: [
     { required: true, message: '必须输入密码信息', trigger: 'blur' },
-    { pattern: /^[a-z0-9]{3,}/, message: '必须是3位数字或则字母组成', trigger: 'blur' }
+    { pattern: /^[a-z0-9]{3,}/, message: '必须是3位数字或则字母组成', trigger: 'change' }
   ]
 }
 </script>

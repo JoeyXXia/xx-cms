@@ -26,6 +26,7 @@ const account = reactive({
   password: ''
 })
 
+// account rules
 const accountRules: FormRules = {
   name: [
     { required: true, message: '必须输入账号信息', trigger: 'blur' },
@@ -36,6 +37,15 @@ const accountRules: FormRules = {
     { pattern: /^[a-z0-9]{3,}/, message: '必须是3位数字或则字母组成', trigger: 'change' }
   ]
 }
+
+// login logic
+function loginAction() {
+  console.log('account', account.name, account.password)
+}
+
+defineExpose({
+  loginAction
+})
 </script>
 
 <style lang="less" scoped></style>

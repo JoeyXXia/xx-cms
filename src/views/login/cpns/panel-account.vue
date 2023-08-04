@@ -22,6 +22,7 @@
 import { reactive, ref } from 'vue'
 import type { FormRules, ElForm } from 'element-plus'
 import { ElMessage } from 'element-plus'
+import userLoginStore from '@/store/login/login'
 
 const account = reactive({
   name: '',
@@ -42,10 +43,13 @@ const accountRules: FormRules = {
 
 // login logic
 const formRef = ref<InstanceType<typeof ElForm>>()
+const loginStore = userLoginStore()
 function loginAction() {
   formRef.value?.validate((valid) => {
+    const name = account.name
+    const password = account.password
     if (valid) {
-      console.log('success')
+      loginStore.loginAccountAction({ name, password })
     } else {
       ElMessage.error('oooooooooo something wrong')
     }

@@ -1,10 +1,9 @@
-import { BASE_URL, TIME_OUT } from './config/index'
+import { BASE_URL, TIME_OUT } from './config'
 import XXRequest from './request'
 
-const xxrequest = new XXRequest({
+const xxRequest = new XXRequest({
   baseURL: BASE_URL,
-  timeout: TIME_OUT,
-  interceptors: {}
+  timeout: TIME_OUT
 })
 
-export default xxrequest
+export default xxRequest

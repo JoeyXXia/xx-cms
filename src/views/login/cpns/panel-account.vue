@@ -23,8 +23,8 @@ import { reactive, ref } from 'vue'
 import type { FormRules, ElForm } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import userLoginStore from '@/store/login/login'
-
-const account = reactive({
+import type { IAccount } from '@/types'
+const account = reactive<IAccount>({
   name: '',
   password: ''
 })

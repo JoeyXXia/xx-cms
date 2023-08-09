@@ -2,8 +2,8 @@ import { defineStore } from 'pinia'
 import { accountLoginRequest } from '@/service/login/login'
 import type { IAccount } from '@/types'
 import { localCache, sessionCache } from '@/utils/cache'
-
-const LOGIN_TOKEN = 'login-token'
+import router from '@/router'
+import { LOGIN_TOKEN } from '@/global/constants'
 
 const userLoginStore = defineStore('login', {
   state: () => ({
@@ -19,6 +19,8 @@ const userLoginStore = defineStore('login', {
       this.token = longinResult.data.token
 
       localCache.setCache(LOGIN_TOKEN, this.token)
+
+      router.push('/main')
     }
   }
 })

@@ -13,3 +13,8 @@ export function getUserInfoById(id: number) {
     url: `/users/${id}`
   })
 }
+export function getUserMenuByRoleId(id: number) {
+  return xxRequest.get({
+    url: `/role/${id}/menu`
+  })
+}

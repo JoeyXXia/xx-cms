@@ -1,18 +1,31 @@
 <template>
-  <div>main</div>
-  <button @click="logoutBtn">退出登录</button>
+  <div class="main">
+    <el-container class="main-content">
+      <el-aside width="200px">Aside</el-aside>
+      <el-container>
+        <el-header height="50px">Header</el-header>
+        <el-main>Main</el-main>
+      </el-container>
+    </el-container>
+  </div>
 </template>
 
-<script setup lang="ts">
-import { LOGIN_TOKEN } from '@/global/constants'
-import { localCache } from '@/utils/cache'
-import { useRouter } from 'vue-router'
+<script setup lang="ts"></script>
 
-const router = useRouter()
-function logoutBtn() {
-  localCache.removeCache(LOGIN_TOKEN)
-  router.push('/login')
+<style lang="less" scoped>
+.main {
+  height: 100%;
 }
-</script>
 
-<style lang="less" scoped></style>
+.main-content {
+  height: 100%;
+
+  .el-aside {
+    background-color: red;
+  }
+
+  .el-main {
+    background-color: green;
+  }
+}
+</style>

@@ -12,75 +12,32 @@ import { LOGIN_TOKEN } from '../../global/constants';
         default-active="3"
         text-color="#b7bdc3"
       >
-        <el-sub-menu index="1">
-          <template #title>
-            <el-icon><location /></el-icon>
-            <span>Navigator One</span>
-          </template>
-          <el-menu-item>
-            <span>Navigator Two</span>
-          </el-menu-item>
-          <el-menu-item>
-            <span>Navigator Two</span>
-          </el-menu-item>
-          <el-menu-item>
-            <span>Navigator Two</span>
-          </el-menu-item>
-        </el-sub-menu>
-
-        <el-sub-menu index="1">
-          <template #title>
-            <el-icon><location /></el-icon>
-            <span>Navigator One</span>
-          </template>
-          <el-menu-item>
-            <span>Navigator Two</span>
-          </el-menu-item>
-          <el-menu-item>
-            <span>Navigator Two</span>
-          </el-menu-item>
-          <el-menu-item>
-            <span>Navigator Two</span>
-          </el-menu-item>
-        </el-sub-menu>
-
-        <el-sub-menu index="1">
-          <template #title>
-            <el-icon><location /></el-icon>
-            <span>Navigator One</span>
-          </template>
-          <el-menu-item>
-            <span>Navigator Two</span>
-          </el-menu-item>
-          <el-menu-item>
-            <span>Navigator Two</span>
-          </el-menu-item>
-          <el-menu-item>
-            <span>Navigator Two</span>
-          </el-menu-item>
-        </el-sub-menu>
-
-        <el-sub-menu index="1">
-          <template #title>
-            <el-icon><location /></el-icon>
-            <span>Navigator One</span>
-          </template>
-          <el-menu-item>
-            <span>Navigator Two</span>
-          </el-menu-item>
-          <el-menu-item>
-            <span>Navigator Two</span>
-          </el-menu-item>
-          <el-menu-item>
-            <span>Navigator Two</span>
-          </el-menu-item>
-        </el-sub-menu>
+        <template v-for="item in userMenus" :key="item.id">
+          <el-sub-menu :index="item.id + ''">
+            <template #title>
+              <el-icon>
+                <component :is="item.icon.split('-icon-')[1]"></component>
+              </el-icon>
+              <span>{{ item.name }}</span>
+            </template>
+            <template v-for="subitem in item.children" :key="subitem.id">
+              <el-menu-item :index="subitem.id + ''">
+                {{ subitem.name }}
+              </el-menu-item>
+            </template>
+          </el-sub-menu>
+        </template>
       </el-menu>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import userLoginStore from '@/store/login/login'
+
+const loginStore = userLoginStore()
+const userMenus = loginStore.userMenus
+</script>
 
 <style lang="less" scoped>
 .main-menu {

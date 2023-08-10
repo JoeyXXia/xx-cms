@@ -1,16 +1,23 @@
 <template>
   <div class="main">
     <el-container class="main-content">
-      <el-aside width="200px">Aside</el-aside>
+      <el-aside width="200px">
+        <main-menu />
+      </el-aside>
       <el-container>
-        <el-header height="50px">Header</el-header>
+        <el-header height="50px">
+          <main-header />
+        </el-header>
         <el-main>Main</el-main>
       </el-container>
     </el-container>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import MainMenu from '@/components/main-menu/main-menu.vue'
+import MainHeader from '@/components/main-header/main-header.vue'
+</script>
 
 <style lang="less" scoped>
 .main {

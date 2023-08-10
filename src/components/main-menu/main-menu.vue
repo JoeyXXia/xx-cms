@@ -3,7 +3,7 @@ import { LOGIN_TOKEN } from '../../global/constants';
   <div class="main-menu">
     <div class="logo">
       <img class="img" src="@/assets/img/logo.svg" alt="" />
-      <h2 class="title">XX管理系统</h2>
+      <h2 v-show="!isFold" class="title">XX管理系统</h2>
     </div>
     <div class="menu">
       <el-menu
@@ -11,6 +11,7 @@ import { LOGIN_TOKEN } from '../../global/constants';
         background-color="#001529"
         default-active="3"
         text-color="#b7bdc3"
+        :collapse="isFold"
       >
         <template v-for="item in userMenus" :key="item.id">
           <el-sub-menu :index="item.id + ''">
@@ -37,6 +38,13 @@ import userLoginStore from '@/store/login/login'
 
 const loginStore = userLoginStore()
 const userMenus = loginStore.userMenus
+
+defineProps({
+  isFold: {
+    type: Boolean,
+    default: false
+  }
+})
 </script>
 
 <style lang="less" scoped>

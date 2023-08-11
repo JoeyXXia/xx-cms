@@ -26,7 +26,7 @@ const router = createRouter({
 
 router.beforeEach((to) => {
   const token = localCache.getCache(LOGIN_TOKEN)
-  if (to.path === '/main' && !token) return '/login'
+  if (to.path.startsWith('/main') && !token) return '/login'
 })
 
 export default router

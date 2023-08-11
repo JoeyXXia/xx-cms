@@ -17,7 +17,7 @@
         <span class="user-info">
           <el-avatar
             :size="30"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzjD83_40zrP2uB1AKHN_XsdNOLEnxenaYDQ&usqp=CAU"
+            src="https://upload.jianshu.io/users/upload_avatars/1102036/c3628b478f06.jpeg"
           />
           <span class="name">xx</span>
         </span>
@@ -81,16 +81,16 @@ function handleExitClick() {
       font-size: 20px;
     }
 
-    .dot {
-      position: absolute;
-      top: 3px;
-      right: 3px;
-      z-index: 10;
-      width: 6px;
-      height: 6px;
-      background: red;
-      border-radius: 100%;
-    }
+    // .dot {
+    //   // position: absolute;
+    //   top: 3px;
+    //   right: 3px;
+    //   z-index: 10;
+    //   width: 60px;
+    //   height: 600px;
+    //   background: red;
+    //   border-radius: 100%;
+    // }
   }
 }
 
@@ -100,6 +100,9 @@ function handleExitClick() {
     align-items: center;
     cursor: pointer;
 
+    &:hover {
+      border: 0px solid #f2f2f2;
+    }
     .name {
       margin-left: 5px;
     }

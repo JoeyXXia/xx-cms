@@ -9,7 +9,7 @@ import { LOGIN_TOKEN } from '../../global/constants';
       <el-menu
         active-text-color="#fff"
         background-color="#001529"
-        default-active="3"
+        :default-active="defaultActive"
         text-color="#b7bdc3"
         :collapse="isFold"
       >
@@ -35,7 +35,9 @@ import { LOGIN_TOKEN } from '../../global/constants';
 
 <script setup lang="ts">
 import userLoginStore from '@/store/login/login'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+import { mapPathToMenu } from '../../utils/map-menus'
+import { computed } from 'vue'
 
 defineProps({
   isFold: {
@@ -52,6 +54,12 @@ function handleItemClick(item: any) {
   const url = item.url
   router.push(url)
 }
+
+const route = useRoute()
+const defaultActive = computed(() => {
+  const pathMenu = mapPathToMenu(route.path, userMenus)
+  return pathMenu.id + ''
+})
 </script>
 
 <style lang="less" scoped>

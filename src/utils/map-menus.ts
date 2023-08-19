@@ -35,3 +35,14 @@ export function mapMenusToRoutes(userMenus: any[]) {
   }
   return routes
 }
+
+// path to menus
+export function mapPathToMenu(path: string, userMenus: any[]) {
+  for (const menu of userMenus) {
+    for (const subMenu of menu.children) {
+      if (subMenu.url === path) {
+        return subMenu
+      }
+    }
+  }
+}

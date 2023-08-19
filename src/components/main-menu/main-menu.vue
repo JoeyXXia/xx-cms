@@ -22,7 +22,7 @@ import { LOGIN_TOKEN } from '../../global/constants';
               <span>{{ item.name }}</span>
             </template>
             <template v-for="subitem in item.children" :key="subitem.id">
-              <el-menu-item :index="subitem.id + ''">
+              <el-menu-item :index="subitem.id + ''" @click="handleItemClick(subitem)">
                 {{ subitem.name }}
               </el-menu-item>
             </template>
@@ -35,9 +35,7 @@ import { LOGIN_TOKEN } from '../../global/constants';
 
 <script setup lang="ts">
 import userLoginStore from '@/store/login/login'
-
-const loginStore = userLoginStore()
-const userMenus = loginStore.userMenus
+import { useRouter } from 'vue-router'
 
 defineProps({
   isFold: {
@@ -45,6 +43,15 @@ defineProps({
     default: false
   }
 })
+
+const loginStore = userLoginStore()
+const userMenus = loginStore.userMenus
+
+const router = useRouter()
+function handleItemClick(item: any) {
+  const url = item.url
+  router.push(url)
+}
 </script>
 
 <style lang="less" scoped>

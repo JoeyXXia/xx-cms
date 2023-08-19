@@ -4,6 +4,7 @@ import type { IAccount } from '@/types'
 import { localCache, sessionCache } from '@/utils/cache'
 import router from '@/router'
 import { LOGIN_TOKEN } from '@/global/constants'
+import { mapMenusToRoutes } from '@/utils/map-menus'
 
 interface ILonginState {
   token: string
@@ -38,6 +39,11 @@ const userLoginStore = defineStore('login', {
       //cache user
       localCache.setCache('userInfo', userInfo)
       localCache.setCache('userMenus', userMenus)
+
+      //dynamic add routes
+      const routes = mapMenusToRoutes(userMenus)
+      routes.forEach((route) => router.addRoute('main', route))
+
       router.push('/main')
     }
   }

@@ -54,7 +54,7 @@ function handleFoldChange(flag: boolean) {
   }
 
   .el-main {
-    background-color: green;
+    // background-color: green;
   }
 }
 </style>

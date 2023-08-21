@@ -9,7 +9,7 @@ export function postUsersListData(queryInfo: any) {
 }
 
 export function deleteUserById(id: number) {
-  return xxRequest.post({
+  return xxRequest.delete({
     url: `/users/${id}`
   })
 }
@@ -38,7 +38,7 @@ export function postPageListData(pageName: any, queryInfo: any) {
 }
 
 export function deletePageById(pageName: string, id: number) {
-  return xxRequest.post({
+  return xxRequest.delete({
     url: `/${pageName}/${id}`
   })
 }

@@ -78,6 +78,25 @@ function handleConfirmClick() {
     systemStore.newUserDataAction(formData)
   }
 }
+
+//dialonvisable logic
+function setModalVisaible(isNew: boolean = true, itemData?: any) {
+  dialogVisible.value = true
+  isNewRef.value = isNew
+  if (!isNew && itemData) {
+    for (const key in formData) {
+      formData[key] = itemData[key]
+    }
+    editData.value = itemData
+  } else {
+    for (const key in formData) {
+      formData[key] = ''
+    }
+    editData.value = null
+  }
+}
+
+defineExpose({ setModalVisaible })
 </script>
 
 <style lang="less" scoped></style>

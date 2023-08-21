@@ -12,7 +12,23 @@ import userSystemStore from '../../../../../store/main/sysytem/system';
         <el-table-column align="center" prop="name" label="用户名" width="150px" />
         <el-table-column align="center" prop="realname" label="真实姓名" width="150px" />
         <el-table-column align="center" prop="cellphone" label="手机号码" width="150px" />
-        <el-table-column align="center" prop="enable" label="状态" width="100px"> </el-table-column>
+        <el-table-column align="center" prop="enable" label="状态" width="100px">
+          <template #default="scope">
+            <el-button :type="scope.row.enable ? 'primary' : 'danger'" plain>{{
+              scope.row.enable ? '启用' : '禁用'
+            }}</el-button>
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="创建时间" prop="createAt">
+          <template #default="scope">
+            {{ formatUTC(scope.row.createAt) }}
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="更新时间" prop="updateAt">
+          <template #default="scope">
+            {{ formatUTC(scope.row.updateAt) }}
+          </template>
+        </el-table-column>
       </el-table>
     </div>
     <div class="pagination">
@@ -25,6 +41,7 @@ import userSystemStore from '../../../../../store/main/sysytem/system';
 import userSystemStore from '@/store/main/sysytem/system'
 import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
+import { formatUTC } from '@/utils/format'
 const systemStore = userSystemStore()
 const currentPage = ref(1)
 const pageSize = ref(10)

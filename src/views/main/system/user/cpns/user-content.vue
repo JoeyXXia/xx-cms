@@ -53,7 +53,15 @@
       </el-table>
     </div>
     <div class="pagination">
-      <el-pagination background layout="prev, pager, next" :total="1000" />
+      <el-pagination
+        layout="total,sizes prev, pager, next,jumper"
+        v-model:current-page="currentPage"
+        v-model:page-size="pageSize"
+        :page-sizes="[10, 20, 30]"
+        :total="usersTotalCount"
+        @size-change="handelSizeChnange"
+        @current-change="handleCurrentChange"
+      />
     </div>
   </div>
 </template>
@@ -79,6 +87,14 @@ function fetchUserListData(formData: any = {}) {
 }
 // edit event
 const emit = defineEmits(['newClick', 'editClick'])
+
+//pagination event
+function handelSizeChnange() {
+  fetchUserListData()
+}
+function handleCurrentChange() {
+  fetchUserListData()
+}
 
 function handleNewUserClick() {
   emit('editClick')

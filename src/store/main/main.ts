@@ -15,9 +15,8 @@ const useMainStore = defineStore('main', {
     async fetchEntireDataAction() {
       const rolesResult = await getEntireRoles()
       const departmentsResult = await getEntireDepartments()
-
-      this.entireRoles = rolesResult
-      this.entireDepartments = departmentsResult
+      this.entireRoles = rolesResult.data.list
+      this.entireDepartments = departmentsResult.data.list
     }
   }
 })

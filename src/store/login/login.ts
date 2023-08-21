@@ -5,6 +5,7 @@ import { localCache, sessionCache } from '@/utils/cache'
 import router from '@/router'
 import { LOGIN_TOKEN } from '@/global/constants'
 import { mapMenusToRoutes } from '@/utils/map-menus'
+import useMainStore from '../main/main'
 
 interface ILonginState {
   token: string
@@ -54,6 +55,10 @@ const userLoginStore = defineStore('login', {
         this.token = token
         this.userInfo = userInfo
         this.userMenus = userMenus
+
+        // roles and departments
+        const mainStore = useMainStore()
+        mainStore.fetchEntireDataAction()
 
         const routes = mapMenusToRoutes(userMenus)
         routes.forEach((route) => router.addRoute('main', route))

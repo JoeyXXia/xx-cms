@@ -1,4 +1,3 @@
-import userSystemStore from '../../../../../store/main/sysytem/system';
 <template>
   <div class="content">
     <div class="header">

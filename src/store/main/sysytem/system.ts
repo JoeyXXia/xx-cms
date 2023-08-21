@@ -10,7 +10,6 @@ import {
 } from '@/service/main/system/system'
 import { defineStore } from 'pinia'
 import type { ISystemState } from './type'
-import { deletePageById } from '../../../service/main/system/system'
 
 const userSystemStore = defineStore('system', {
   state: (): ISystemState => ({

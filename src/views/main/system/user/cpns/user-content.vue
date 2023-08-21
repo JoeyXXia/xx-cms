@@ -1,3 +1,4 @@
+import userSystemStore from '../../../../../store/main/sysytem/system';
 <template>
   <div class="content">
     <div class="header">
@@ -5,7 +6,7 @@
       <el-button type="primary">新建用户</el-button>
     </div>
     <div class="table">
-      <el-table style="width: 100%" border>
+      <el-table style="width: 100%" border :data="usersList">
         <el-table-column align="center" type="selection" width="60px" />
         <el-table-column align="center" type="index" label="序号" width="60px" />
         <el-table-column align="center" prop="name" label="用户名" width="150px" />
@@ -14,9 +15,62 @@
         <el-table-column align="center" prop="enable" label="状态" width="100px"> </el-table-column>
       </el-table>
     </div>
+    <div class="pagination">
+      <el-pagination background layout="prev, pager, next" :total="1000" />
+    </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import userSystemStore from '@/store/main/sysytem/system'
+import { storeToRefs } from 'pinia'
+import { ref } from 'vue'
+const systemStore = userSystemStore()
+const currentPage = ref(1)
+const pageSize = ref(10)
+fetchUserListData()
 
-<style lang="less" scoped></style>
+const { usersList, usersTotalCount } = storeToRefs(systemStore)
+
+function fetchUserListData(formData: any = {}) {
+  const size = pageSize.value
+  const offset = (currentPage.value - 1) * size
+  const pageInfo = { size, offset }
+  const queryInfo = { ...pageInfo, ...formData }
+  systemStore.postUsersListAction(queryInfo)
+}
+</script>
+
+<style lang="less" scoped>
+.content {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 10px;
+
+  .title {
+    font-size: 22px;
+  }
+}
+.table {
+  :deep(.el-table_cell) {
+    padding: 12px 0;
+  }
+
+  .el-button {
+    margin-left: 0;
+    padding: 5px 8px;
+  }
+}
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+</style>

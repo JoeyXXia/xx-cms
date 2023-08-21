@@ -3,7 +3,7 @@ import userSystemStore from '../../../../../store/main/sysytem/system';
   <div class="content">
     <div class="header">
       <h3 class="title">用户列表</h3>
-      <el-button type="primary">新建用户</el-button>
+      <el-button type="primary" @click="handleNewUserClick">新建用户</el-button>
     </div>
     <div class="table">
       <el-table style="width: 100%" border :data="usersList">
@@ -29,6 +29,28 @@ import userSystemStore from '../../../../../store/main/sysytem/system';
             {{ formatUTC(scope.row.updateAt) }}
           </template>
         </el-table-column>
+        <el-table-column align="center" label="操作" width="150px">
+          <template #default="scope">
+            <el-button
+              size="small"
+              icon="Edit"
+              type="primary"
+              text
+              @click="handleEditBtnClick(scope.row)"
+            >
+              编辑
+            </el-button>
+            <el-button
+              size="small"
+              icon="Delete"
+              type="danger"
+              text
+              @click="handleDeleteBtnClick(scope.row.id)"
+            >
+              删除
+            </el-button>
+          </template>
+        </el-table-column>
       </el-table>
     </div>
     <div class="pagination">
@@ -48,7 +70,7 @@ const pageSize = ref(10)
 fetchUserListData()
 
 const { usersList, usersTotalCount } = storeToRefs(systemStore)
-
+// request user data
 function fetchUserListData(formData: any = {}) {
   const size = pageSize.value
   const offset = (currentPage.value - 1) * size
@@ -56,6 +78,19 @@ function fetchUserListData(formData: any = {}) {
   const queryInfo = { ...pageInfo, ...formData }
   systemStore.postUsersListAction(queryInfo)
 }
+// edit event
+const emit = defineEmits(['newClick', 'editClick'])
+
+function handleNewUserClick() {
+  emit('editClick')
+}
+function handleEditBtnClick(itemData: any) {
+  emit('editClick', itemData)
+}
+function handleDeleteBtnClick(id: number) {
+  systemStore.deleteUserByIdAction(id)
+}
+defineExpose({ fetchUserListData })
 </script>
 
 <style lang="less" scoped>

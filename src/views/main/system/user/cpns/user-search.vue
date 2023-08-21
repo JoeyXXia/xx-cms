@@ -62,13 +62,18 @@ const searchForm = reactive({
   enable: '',
   createAt: ''
 })
+
+const emit = defineEmits(['queryClick', 'resetClick'])
 // reset form input
 const formRef = ref<InstanceType<typeof ElForm>>()
 function handleResetClick() {
   formRef.value?.resetFields()
+  emit('resetClick')
 }
 
-function handleQueryClick() {}
+function handleQueryClick() {
+  emit('queryClick', searchForm)
+}
 </script>
 
 <style lang="less" scoped>

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { accountLoginRequest, getUserInfoById, getUserMenuByRoleId } from '@/service/login/login'
 import type { IAccount } from '@/types'
-import { localCache, sessionCache } from '@/utils/cache'
+import { localCache } from '@/utils/cache'
 import router from '@/router'
 import { LOGIN_TOKEN } from '@/global/constants'
 import { mapMenusToRoutes } from '@/utils/map-menus'

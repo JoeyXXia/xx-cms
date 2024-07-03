@@ -64,7 +64,7 @@ function loginAction(isRemPwd: boolean) {
         }
       })
     } else {
-      ElMessage.error('oooooooooo something wrong')
+      ElMessage.error('账号或者密码输入有误')
     }
   })
 }

@@ -1,7 +1,11 @@
 <template>
   <div class="overview">
-    <h2>overview</h2>
-    <xx-card></xx-card>
+    <xx-card title="关于">
+      <div class="c-left">
+        Vue3Admin 是基于 Vue3、Vuex、VueRouter、Vite、 ElementPlus 、TypeScript、Echart5
+        等后台系统解决方案。
+      </div>
+    </xx-card>
     <xx-text-link></xx-text-link>
     <xx-descriptions></xx-descriptions>
     <xx-code></xx-code>

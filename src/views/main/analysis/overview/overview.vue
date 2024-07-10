@@ -8,9 +8,9 @@
     </xx-card>
     <xx-card title="技术栈">
       <xx-text-link :text-arrs="technologyStacks" />
+      <xx-descriptions title="生产环境依赖" :column="2" :table-datas="dependencies" />
+      <xx-descriptions title="开发环境依赖" :column="2" :table-datas="devDependencies" />
     </xx-card>
-    <xx-text-link></xx-text-link>
-    <xx-descriptions></xx-descriptions>
     <xx-code></xx-code>
   </div>
 </template>
@@ -21,7 +21,7 @@ import XxTextLink from '@/base-ui/text-link/textLink.vue'
 import XxCode from '@/base-ui/code/code.vue'
 import XxCard from '@/base-ui/card/card.vue'
 
-import { technologyStacks } from './config'
+import { technologyStacks, dependencies, devDependencies } from './config'
 </script>
 
 <style scoped>

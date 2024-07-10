@@ -6,6 +6,9 @@
         等后台系统解决方案。
       </div>
     </xx-card>
+    <xx-card title="技术栈">
+      <xx-text-link :text-arrs="technologyStacks" />
+    </xx-card>
     <xx-text-link></xx-text-link>
     <xx-descriptions></xx-descriptions>
     <xx-code></xx-code>
@@ -17,6 +20,8 @@ import XxDescriptions from '@/base-ui/descriptions/descriptions.vue'
 import XxTextLink from '@/base-ui/text-link/textLink.vue'
 import XxCode from '@/base-ui/code/code.vue'
 import XxCard from '@/base-ui/card/card.vue'
+
+import { technologyStacks } from './config'
 </script>
 
 <style scoped>

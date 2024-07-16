@@ -17,6 +17,7 @@
     "axios": "^1.4.0",
     "dayjs": "^1.11.9",
     "element-plus": "^2.3.8",
+    "highlight.js": "^11.8.0",
     "normalize.css": "^8.0.1",
     "pinia": "^2.1.4",
     "vue": "^3.3.4",

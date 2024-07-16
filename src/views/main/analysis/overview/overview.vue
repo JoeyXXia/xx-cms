@@ -11,7 +11,12 @@
       <xx-descriptions title="生产环境依赖" :column="2" :table-datas="dependencies" />
       <xx-descriptions title="开发环境依赖" :column="2" :table-datas="devDependencies" />
     </xx-card>
-    <xx-code></xx-code>
+    <xx-card title="项目结构">
+      <div class="c-left">
+        <xx-code language="bash" :code="projectDir" />
+      </div>
+    </xx-card>
+    <xx-card> </xx-card>
   </div>
 </template>
 
@@ -21,10 +26,13 @@ import XxTextLink from '@/base-ui/text-link/textLink.vue'
 import XxCode from '@/base-ui/code/code.vue'
 import XxCard from '@/base-ui/card/card.vue'
 
-import { technologyStacks, dependencies, devDependencies } from './config'
+import { technologyStacks, dependencies, devDependencies, projectDir } from './config'
 </script>
 
 <style scoped>
 .overview {
+  .c-left {
+    text-align: left;
+  }
 }
 </style>

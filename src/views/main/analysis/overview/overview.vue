@@ -82,5 +82,19 @@ import { technologyStacks, dependencies, devDependencies, projectDir } from './c
   .c-left {
     text-align: left;
   }
+
+  .el-card {
+    margin-bottom: 20px;
+
+    &:deep(.el-card_header span) {
+      font-weight: 700;
+    }
+  }
+
+  .description {
+    &:deep(.el-descriptions_title) {
+      font-weight: 400;
+    }
+  }
 }
 </style>

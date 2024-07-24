@@ -1,6 +1,5 @@
 <template>
   <div class="dashboard">
-    <h1>dashboard</h1>
     <el-row :gutter="10">
       <template>
         <el-col :md="12" :lg="6" :xl="6"> </el-col>
@@ -9,7 +8,11 @@
   </div>
 </template>
 
-<script setup lang="ts" name="dashboard"></script>
+<script setup lang="ts" name="dashboard">
+import useAnalysisStore from '@/store/main/analysis/analysis'
+
+const analysisStore = useAnalysisStore()
+</script>
 
 <style scoped>
 .dashboard {

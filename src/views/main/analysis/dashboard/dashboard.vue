@@ -1,10 +1,9 @@
 <template>
   <div class="dashboard">
-    <statistical-panel />
     <el-row :gutter="10">
       <template v-for="item in topPanelData" :key="item.title">
         <el-col :md="12" :lg="6" :xl="6">
-          <statistical-panel />
+          <statistical-panel :panel-data="item" />
         </el-col>
       </template>
     </el-row>
@@ -15,8 +14,9 @@
 import useAnalysisStore from '@/store/main/analysis/analysis'
 import { computed } from 'vue'
 import statisticalPanel from '@/components/statistical-panel/statistical-panel.vue'
-
+// store dispatch network
 const analysisStore = useAnalysisStore()
+analysisStore.getAnalysisDataAction()
 
 // top PanelData
 const topPanelData = computed(() => analysisStore.topPanelDatas)

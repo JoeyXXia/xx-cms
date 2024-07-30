@@ -22,22 +22,22 @@ const useAnalysisStore = defineStore('analysis', {
   actions: {
     async getAnalysisDataAction() {
       const resultTopPanelDatas = await getAmountList()
-      this.topPanelDatas = resultTopPanelDatas
+      this.topPanelDatas = resultTopPanelDatas.data
 
       const goodCount = await getCategoryCount()
-      this.categoryGoodsCount = goodCount
+      this.categoryGoodsCount = goodCount.data
 
       const goodSale = await getCategoryGoodSale()
-      this.categoryGoodsSale = goodSale
+      this.categoryGoodsSale = goodSale.data
 
       const goodFavor = await getCategoryGoodFavor()
-      this.categoryGoodsCount = goodFavor
+      this.categoryGoodsFavor = goodFavor.data
 
       const saleTop10 = await getGoodsSaleTop10()
-      this.goodsSaleTop10 = saleTop10
+      this.goodsSaleTop10 = saleTop10.data
 
       const addressSale = await getGoodAddressSale()
-      this.goodsAddressSale = addressSale
+      this.goodsAddressSale = addressSale.data
     }
   }
 })

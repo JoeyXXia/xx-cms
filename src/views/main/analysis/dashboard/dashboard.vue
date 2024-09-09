@@ -12,7 +12,7 @@
     <el-row :gutter="10">
       <el-col :span="7">
         <xx-card title="分类商品数量(饼图)">
-          <pie-echart></pie-echart>
+          <pie-echart :pie-data="showGoodCatagoryCount"></pie-echart>
         </xx-card>
       </el-col>
       <el-col :span="10">
@@ -58,6 +58,25 @@ const showGoodCatagoryCount = computed(() => {
   return categoryGoodsCount.value.map((item) => ({
     name: item.name,
     value: item.goodsCount
+  }))
+})
+
+const showGoodsCategorySale = computed(() => {
+  const labels = categoryGoodsSale.value.map((item) => item.name)
+  const values = categoryGoodsSale.value.map((item) => item.goodsCount)
+  return { labels, values }
+})
+
+const showGoodsCategoryFavor = computed(() => {
+  const labels = categoryGoodsFavor.value.map((item) => item.name)
+  const values = categoryGoodsFavor.value.map((item) => item.goodsFavor)
+  return { labels, values }
+})
+
+const showGoodsAddressSale = computed(() => {
+  return goodsAddressSale.value.map((item) => ({
+    name: item.address,
+    value: item.count
   }))
 })
 </script>

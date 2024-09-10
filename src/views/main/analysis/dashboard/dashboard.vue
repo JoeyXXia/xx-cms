@@ -11,18 +11,32 @@
     <!-- in the middle -->
     <el-row :gutter="10">
       <el-col :span="7">
-        <xx-card title="分类商品数量(饼图)">
+        <xx-card>
           <pie-echart :pie-data="showGoodCatagoryCount"></pie-echart>
         </xx-card>
       </el-col>
       <el-col :span="10">
-        <xx-card title="分类商品数量(饼图)">
-          <pie-echart></pie-echart>
+        <xx-card>
+          <map-echart :map-data="showGoodsAddressSale" />
         </xx-card>
       </el-col>
       <el-col :span="7">
-        <xx-card title="分类商品数量(饼图)"> <pie-echart></pie-echart> </xx-card
+        <xx-card> <rose-echart :rose-data="showGoodCatagoryCount" /> </xx-card
       ></el-col>
+    </el-row>
+
+    <!-- in the bottom  -->
+    <el-row :gutter="10">
+      <el-col :span="12">
+        <xx-card>
+          <line-echart v-bind="showGoodsCategorySale"></line-echart>
+        </xx-card>
+      </el-col>
+      <el-col :span="12">
+        <xx-card>
+          <bar-echart v-bind="showGoodsCategoryFavor" />
+        </xx-card>
+      </el-col>
     </el-row>
   </div>
 </template>

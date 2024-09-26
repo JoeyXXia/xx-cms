@@ -1,5 +1,5 @@
 <template>
-  <div class="search" v-if="isQuery">
+  <div class="search">
     <el-form
       label-width="searchConfig.labelWidth ?? '80px'"
       :model="searchForm"
@@ -28,8 +28,8 @@
                   :placeholder="item.placeholder"
                   style="width: 100%"
                 >
-                  <template v-for="option in ITEM_RENDER_EVT.options" :key="option.value">
-                    <el-option :label="option.label" :value="Option.value" />
+                  <template v-for="option in item.options" :key="option.value">
+                    <el-option :label="option.label" :value="option.value" />
                   </template>
                 </el-select>
               </template>

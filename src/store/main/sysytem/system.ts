@@ -10,6 +10,7 @@ import {
 } from '@/service/main/system/system'
 import { defineStore } from 'pinia'
 import type { ISystemState } from './type'
+import useMainStore from '../main'
 
 const userSystemStore = defineStore('system', {
   state: (): ISystemState => ({
@@ -53,16 +54,26 @@ const userSystemStore = defineStore('system', {
       const deleteResult = await deletePageById(pageName, id)
       console.log(deleteResult)
       this.postPageListDataAction(pageName, { offset: 0, size: 10 })
+
+      //complete data
+      const mainStore = useMainStore()
+      mainStore.fetchEntireDataAction()
     },
     async newPageDataAction(pageName: string, pageInfo: any) {
       const newResult = await newPageData(pageName, pageInfo)
       console.log(newResult)
       this.postPageListDataAction(pageName, { offset: 0, size: 10 })
+
+      // complete data
+      const mainStore = useMainStore()
+      mainStore.fetchEntireDataAction()
     },
     async editPageDataAction(pageName: string, id: number, pageInfo: any) {
       const editResult = await editPageData(pageName, id, pageInfo)
       console.log(editResult)
       this.postPageListDataAction(pageName, { offset: 0, size: 10 })
+      const mainStore = useMainStore()
+      mainStore.fetchEntireDataAction()
     }
   }
 })

@@ -1,15 +1,15 @@
 <template>
   <div class="content">
     <div class="header">
-      <h3 class="title">{{ contenConfig?.header?.titie ?? '数据列表' }}</h3>
+      <h3 class="title">{{ contentConfig?.header?.title ?? '数据列表' }}</h3>
       <el-button type="primary" @click="handleNewUserClick">{{
-        contenConfig?.header?.btnTitle ?? '新建数据'
+        contentConfig?.header?.btnTitle ?? '新建数据'
       }}</el-button>
     </div>
     <div class="table">
       <el-table style="width: 100%" border :data="pageList" v-bind="contentConfig.childrenTree">
         <template v-for="item in contentConfig.propsList" :key="item.prop">
-          <template v-if="item.type === timer">
+          <template v-if="item.type === 'timer'">
             <el-table-column align="center" v-bind="item">
               <template #default="scope">
                 {{ formatUTC(scope.row[item.prop]) }}
@@ -74,23 +74,59 @@ import userSystemStore from '@/store/main/sysytem/system'
 import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 import { formatUTC } from '@/utils/format'
+import usePermission from '@/hooks/usePermission'
+
+interface IProps {
+  contentConfig: {
+    pageName: string
+    header?: {
+      title?: string
+      btnTitle?: string
+    }
+    propsList: any[]
+    childrenTree?: any
+  }
+}
+
+const props = defineProps<IProps>()
+
+// edit event
+const emit = defineEmits(['newClick', 'editClick'])
+
+const isCreate = usePermission(`${props.contentConfig.pageName}:create`)
+const isDelte = usePermission(`${props.contentConfig.pageName}:delete`)
+const isUpdate = usePermission(`${props.contentConfig.pageName}:update`)
+const isQuery = usePermission(`${props.contentConfig.pageName}:query`)
+
+// network request userList data
 const systemStore = userSystemStore()
 const currentPage = ref(1)
 const pageSize = ref(10)
+systemStore.$onAction(({ name, after }) => {
+  after(() => {
+    if (
+      name === 'deletePageByIdAction' ||
+      name === 'editPageDataAction' ||
+      name === 'newPageDataAction'
+    ) {
+      currentPage.value = 1
+    }
+  })
+})
 fetchPageListData()
 
 const { pageList, usersTotalCount } = storeToRefs(systemStore)
 // request user data
 function fetchPageListData(formData: any = {}) {
+  if (!isQuery) return
+
   const size = pageSize.value
   const offset = (currentPage.value - 1) * size
   const pageInfo = { size, offset }
 
   const queryInfo = { ...pageInfo, ...formData }
-  systemStore.postPageListDataAction('department', queryInfo)
+  systemStore.postPageListDataAction(props.contentConfig.pageName, queryInfo)
 }
-// edit event
-const emit = defineEmits(['newClick', 'editClick'])
 
 //pagination event
 function handelSizeChnange() {
@@ -107,7 +143,7 @@ function handleEditBtnClick(itemData: any) {
   emit('editClick', itemData)
 }
 function handleDeleteBtnClick(id: number) {
-  systemStore.deletePageByIdAction('department', id)
+  systemStore.deletePageByIdAction(props.contentConfig.pageName, id)
 }
 defineExpose({ fetchPageListData })
 </script>

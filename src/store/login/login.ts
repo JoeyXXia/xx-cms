@@ -4,20 +4,22 @@ import type { IAccount } from '@/types'
 import { localCache } from '@/utils/cache'
 import router from '@/router'
 import { LOGIN_TOKEN } from '@/global/constants'
-import { mapMenusToRoutes } from '@/utils/map-menus'
+import { mapMenusToPermissions, mapMenusToRoutes } from '@/utils/map-menus'
 import useMainStore from '../main/main'
 
 interface ILonginState {
   token: string
   userInfo: any
   userMenus: any
+  permissions: string[]
 }
 
 const userLoginStore = defineStore('login', {
   state: (): ILonginState => ({
     token: '',
     userInfo: {},
-    userMenus: []
+    userMenus: [],
+    permissions: []
   }),
   actions: {
     async loginAccountAction(account: IAccount) {
@@ -41,6 +43,14 @@ const userLoginStore = defineStore('login', {
       localCache.setCache('userInfo', userInfo)
       localCache.setCache('userMenus', userMenus)
 
+      // role departments data
+      const mainStore = useMainStore()
+      mainStore.fetchEntireDataAction()
+
+      //login user permission
+      const permissions = mapMenusToPermissions(userMenus)
+      this.permissions = permissions
+
       //dynamic add routes
       const routes = mapMenusToRoutes(userMenus)
       routes.forEach((route) => router.addRoute('main', route))
@@ -60,6 +70,11 @@ const userLoginStore = defineStore('login', {
         const mainStore = useMainStore()
         mainStore.fetchEntireDataAction()
 
+        //permissions
+        const permissions = mapMenusToPermissions(userMenus)
+        this.permissions = permissions
+
+        // add route dymatically
         const routes = mapMenusToRoutes(userMenus)
         routes.forEach((route) => router.addRoute('main', route))
       }

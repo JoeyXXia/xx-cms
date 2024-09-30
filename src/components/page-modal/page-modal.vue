@@ -41,6 +41,12 @@
           </template>
         </el-form>
       </div>
+      <template #footer>
+        <span class="dilog-footer">
+          <el-button @click="dialogVisible = false">取消</el-button>
+          <el-button type="primary" @click="handleConfirmClick">确定</el-button>
+        </span>
+      </template>
     </el-dialog>
   </div>
 </template>

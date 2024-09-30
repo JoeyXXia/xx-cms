@@ -2,7 +2,7 @@
   <div class="content">
     <div class="header">
       <h3 class="title">{{ contentConfig?.header?.title ?? '数据列表' }}</h3>
-      <el-button type="primary" @click="handleNewUserClick">{{
+      <el-button v-if="isCreate" type="primary" @click="handleNewUserClick">{{
         contentConfig?.header?.btnTitle ?? '新建数据'
       }}</el-button>
     </div>

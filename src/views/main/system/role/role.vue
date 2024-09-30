@@ -11,7 +11,18 @@
       @new-click="handleNewClick"
       @edit-click="handleEditClick"
     />
-    <!-- <page-modal /> -->
+    <page-modal :modal-config="modalConfig" :other-info="otherInfo" ref="modalRef">
+      <template #menulist>
+        <el-tree
+          ref="treeRef"
+          :data="entireMenus"
+          show-checkbox
+          node-key="id"
+          :props="{ children: 'children', label: 'name' }"
+          @check="handleElTreeCheck"
+        />
+      </template>
+    </page-modal>
   </div>
 </template>
 

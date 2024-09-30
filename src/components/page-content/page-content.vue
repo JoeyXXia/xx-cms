@@ -49,7 +49,7 @@
               </template>
             </el-table-column>
           </template>
-          <template>
+          <template v-else>
             <el-table-column align="center" v-bind="item" />
           </template>
         </template>

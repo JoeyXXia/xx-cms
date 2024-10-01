@@ -15,7 +15,10 @@
     <div class="info">
       <el-dropdown>
         <span class="user-info">
-          <el-avatar :size="30" src="../../../assets/img/snow.jpg" />
+          <el-avatar
+            :size="30"
+            src="https://raw.githubusercontent.com/JoeyXXia/MyPictureData/main/snow.jpg"
+          />
           <span class="name">xx</span>
         </span>
         <template #dropdown>
